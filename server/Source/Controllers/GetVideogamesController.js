@@ -16,11 +16,12 @@ const GetVideogamesController = async(req, res) => {
       return {
         id: videogame.id,
         nombre: videogame.name,
-        descripcion: videogame.description,
+        descripcion: apiData.description_raw && apiData.description,
         plataformas: platforms,
         imagen: videogame.background_image,
         fechaLanzamiento: videogame.fechaLanzamiento,
         rating: videogame.rating,
+        genres: videogame.genres
       }
     })
 
