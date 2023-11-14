@@ -21,6 +21,7 @@ const express = require('express')
 
 const server = express()
 const PORT = 3000
+const router = require('./Source/Routes/Index');
 const cors = require('cors');
 
 const synchronizeDB = require('./Source/Models/SynchronizeDB');
@@ -31,6 +32,8 @@ server.use(cors({
 }))
 
 server.use(express.json())
+
+server.use(router);
 
 server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}.`)
