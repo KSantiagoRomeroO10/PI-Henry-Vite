@@ -2,10 +2,11 @@ const axios = require('axios')
 require('dotenv').config();
 
 const Videogame = require('../Models/Videogame')
+const Genres = require('../Models/Genres')
 
 const GetVideogamesController = async(req, res) => {
   try{
-    const dbVideogamesResponse = await Videogame.findAll()    
+    const dbVideogamesResponse = await Videogame.findAll({include: Genres})    
 
     let pages = true
     let numberPage = 1
@@ -19,7 +20,7 @@ const GetVideogamesController = async(req, res) => {
 
       if(numberPage === 6) pages = false
       // if(apiResponse.data.next === null) pages = false
-      // else console.log(`Página: ${numberPage}`);
+      // else console.log(`Página: ${numberPage}`)
 
     }
 

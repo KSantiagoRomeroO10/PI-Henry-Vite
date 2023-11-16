@@ -19,7 +19,8 @@ const GetVideoGamesNameController = async (req, res) => {
         nombre: {
           [Op.iLike]: `%${name}%`
         }
-      }
+      },
+      include: Genres
     })
   
     const apiResponse = await axios.get(`${process.env.API_URL}?search=${name}&key=${process.env.API_KEY}`)

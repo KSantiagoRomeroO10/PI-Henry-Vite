@@ -5,7 +5,7 @@ const Genres = sequelize.define('Genres', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    //autoIncrement: true,
+    autoIncrement: true,
     allowNull: false
   },
   nombre: {
