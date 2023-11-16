@@ -7,30 +7,16 @@ const GetGenresController = async (req, res) => {
   try {
     const dbGenres = await Genres.findAll()
 
-    let pages = true
-    let numberPage = 1
-    const apiResponseAllPage = []
-
-    while(pages) {
-
-      let apiResponse = await axios.get(`${process.env.API_URL}?key=${process.env.API_KEY}&page=${numberPage}`)
-      apiResponseAllPage.push(...apiResponse.data.results)
-      numberPage += 1 
-
-      if(numberPage > 5) pages = false
-
-    }
+    const apiResponse = await axios.get(`${process.env.API_URL_GENRES}?key=${process.env.API_KEY}`)
+    const result = apiResponse.data.results
 
     // Buscar todos los equipos de la api y guardarlos en un array sin repetirlos 
 
     const apiGenres = []
 
-    for(let i = 0; i < apiResponseAllPage.length; i++){
-      for (let j = 0; j < apiResponseAllPage[i].genres.length; j++) {
-        if(apiResponseAllPage[i].genres[j].name){
-          console.log(apiResponseAllPage[i].genres[j].name)
-          apiGenres.push(apiResponseAllPage[i].genres[j].name)
-        }
+    for(let i = 0; i < result.length; i++){
+      if(result[i].name){
+        apiGenres.push(result[i].name)
       }
     }
 
