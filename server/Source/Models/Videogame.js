@@ -28,7 +28,7 @@ const Videogame = sequelize.define('Videogame', {
     allowNull: false
   },
   rating: {
-    type: DataTypes.DECIMAL(1, 2),
+    type: DataTypes.DECIMAL(2, 1),
     allowNull: false
   }
 })
